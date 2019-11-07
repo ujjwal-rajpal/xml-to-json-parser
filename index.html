@@ -9,11 +9,18 @@
 <body>
 
     <h1>"Hello World"</h1>
-    <input type="text " id="xmlData" name=""  placeholder="Enter XML..." style="width:50%" >
-    <p id="res"></p>
+    <input type="text " id="xmlData1" name=""  placeholder="Enter XML1..." style="width:50%" >
+    <input type="text " id="xmlData2" name=""  placeholder="Enter XML2..." style="width:50%" >
+    <p id="res1" style="color:blue;border-style: solid;
+    border-width: 3px;"></p>
+    <p id="res2" style="color:pink;border-style: solid;
+    border-width: 3px;"></p>
     <!-- Button to convert  -->
-    <button id="subUpd" onclick="exec()" value="xml2json"  style="width:50%">xml2Json</button>
-
+    <button id="subUpd1" onclick="esec1()" value="xml2json1"  style="width:50%">xml2Json1</button>
+    <button id="subUpd2" onclick="esec2()" value="xml2json2"  style="width:50%">xml2Json2</button>
+    <button id="compare" onclick="compare()" value="compare"  style="width:50%">compare</button>
 </body>
     <script src="testJson2Xml.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
 </html>>
