@@ -1,5 +1,24 @@
+/**
+ *  function to clear a textarea
+ */
+function clear(){
+   alert("ujjwal");
+   console.log(ujjwal);
+//   document.getElementById("xmlData1").value="";
+}
 
-
+/**
+ *  function to clear
+ *  @param {string} xml 
+ */
+function clearData(res,xmlData){
+   document.getElementById(xmlData).value="";
+   document.getElementById(res).value="";
+   if(document.getElementById(res).style.display === "block")
+   {
+      document.getElementById(res).style.display = "none";
+   }
+}
 
 
 function compare() {
@@ -16,8 +35,9 @@ function compare() {
  */
 
 function esec1() {
+   var pos = "left";
    var xml = document.getElementById("xmlData1").value;
-   var json_result = esec(xml);
+   var json_result = esec(xml,pos);
    document.getElementById("res1").innerHTML = json_result;
 }
 
@@ -27,20 +47,40 @@ function esec1() {
  */
 
 function esec2() {
+   var pos = "right";
    var xml = document.getElementById("xmlData2").value;
-   var json_result = esec(xml);
+   var json_result = esec(xml,pos);
+   // loadJSON(json_result,callback);
+   // document.getElementById("res2").style.display = "block";
    document.getElementById("res2").innerHTML = json_result;
+   
 }
+
+// function callback(data){
+   
+// }
 
 /**
  *  function to parse Xml to json
  *  @param {string} xml 
  */
 
-function esec(xml) {
-
+function esec(xml,pos) {
+   if(document.getElementById("error").style.display === "block")
+   {
+      document.getElementById("error").style.display = "none";
+   }
    parser = new DOMParser();
    xmlDoc = parser.parseFromString(xml, "text/xml");
+   // error handling
+   if(isParseError(xmlDoc)) {
+      // alert('Error parsing XML');
+
+      document.getElementById("error").style.display = "block";
+      document.getElementById("error").innerHTML="Error in parsing XML which is on " + pos;
+      throw new Error('Error parsing XML');
+  }
+
    json_result = xmlToJson(xmlDoc);
    json_result = JSON.stringify(json_result);
    return json_result;
@@ -97,4 +137,22 @@ function xmlToJson(xml) {
       }
    }
    return obj;
+}
+
+/**
+ * Parse error
+ * @param {parsedDocument} parsedDocument 
+ */
+function isParseError(parsedDocument) {
+   // parser and parsererrorNS could be cached on startup for efficiency
+   var parser = new DOMParser(),
+       errorneousParse = parser.parseFromString('<', 'text/xml'),
+       parsererrorNS = errorneousParse.getElementsByTagName("parsererror")[0].namespaceURI;
+
+   if (parsererrorNS === 'http://www.w3.org/1999/xhtml') {
+       // In PhantomJS the parseerror element doesn't seem to have a special namespace, so we are just guessing here :(
+       return parsedDocument.getElementsByTagName("parsererror").length > 0;
+   }
+
+   return parsedDocument.getElementsByTagNameNS(parsererrorNS, 'parsererror').length > 0;
 }
