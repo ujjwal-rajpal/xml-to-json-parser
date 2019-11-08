@@ -40,6 +40,33 @@ function parseDdrSummary( summaryJson ){
 
     var summaryArr = {}; // Stores JSON in associative array format
 
+    // var res = {'FMPReport': {}}
+
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          var val = obj[key];
+          console.log(val);
+        }
+    }
+    var attr = "@attributes";
+    for (var key in obj) {
+        if(obj.hasOwnProperty(key)) {
+            name1 = "FMPReport";
+            name2 = "File";
+            if( key = name1 ) {
+                var val = obj[key].attr;
+                summaryArr[name1]=val;
+            }else if ( key = name2 ) {
+                var val = obj[key].attr;
+                summaryArr[name2] = val;
+            }else {
+                var val = obj[key].attr;
+                summaryArr[key] = obj[key].attr;
+            } 
+        }
+        console.log("Summary Parse: ", summaryArr);
+        return summaryArr;
+    }
 
 
     
