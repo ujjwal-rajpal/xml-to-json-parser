@@ -27,7 +27,12 @@ function compareJSON(obj1, obj2) {
        
 }
 
-
+/**
+ * Compares two json objects
+ * @param obj1 json,
+ * @param obj2 json,
+ * @return jdiff json,
+ */
 function diffJson(obj, obj1) {
     for (var key, key1 in obj, obj1) {
         if ( obj.hasOwnProperty(key) 
@@ -36,7 +41,7 @@ function diffJson(obj, obj1) {
             var val = obj[key];
             var val1 = obj1[key1];
             console.log("Compared values, val1: ",val, " val2: ",val1);
-            walk(val);
+            diffJson(val, val1);
         }
     }
 }
