@@ -68,6 +68,5 @@ function parseDdrSummary( summaryJson ){
         return summaryArr;
     }
 
-
     
 }

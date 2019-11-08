@@ -26,3 +26,17 @@ function compareJSON(obj1, obj2) {
     return ret; 
        
 }
+
+
+function diffJson(obj, obj1) {
+    for (var key, key1 in obj, obj1) {
+        if ( obj.hasOwnProperty(key) 
+             && obj1.hasOwnProperty(key1)) {
+            
+            var val = obj[key];
+            var val1 = obj1[key1];
+            console.log("Compared values, val1: ",val, " val2: ",val1);
+            walk(val);
+        }
+    }
+}
